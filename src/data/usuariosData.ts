@@ -1,13 +1,14 @@
 let usuarios = [
-  { id: 1, nome: "João", email: "joao@email.com", papel: "usuario", idade: 30 },
-  { id: 2, nome: "Maria", email: "maria@email.com", papel: "admin", idade: 40 },
-  { id: 3, nome: "Pedro", email: "pedro@email.com", papel: "usuario", idade: 25 },
-  { id: 4, nome: "Ana", email: "ana@email.com", papel: "usuario", idade: 22 }
+  { id: 1, nome: "João Silva", email: "joao@email.com", papel: "usuario", idade: 30 },
+  { id: 2, nome: "Maria Souza", email: "maria@email.com", papel: "admin", idade: 40 },
+  { id: 3, nome: "Pedro Santos", email: "pedro@email.com", papel: "usuario", idade: 25 },
+  { id: 4, nome: "Ana Lima", email: "ana@email.com", papel: "usuario", idade: 22 }
 ]
 
 export const usuariosData = {
   listar: () => usuarios,
   buscarPorId: (id: number) => usuarios.find(u => u.id === id),
+  filtrarPorIdade: (min: number, max: number) => usuarios.filter(u => u.idade >= min && u.idade <= max),
   inserir: (usuario: any) => {
     usuarios.push(usuario)
     return usuario
@@ -17,10 +18,6 @@ export const usuariosData = {
     if (index === -1) return null
     usuarios[index] = { ...usuarios[index], ...dados }
     return usuarios[index]
-  },
-  remover: (id: number) => {
-    usuarios = usuarios.filter(u => u.id !== id)
-    return true
   },
   removerInativos: () => {
     const inativos = usuarios.filter(u => u.papel !== "admin")
